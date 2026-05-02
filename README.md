@@ -23,17 +23,19 @@ API REST robusta desenvolvida com Java e Spring Boot, aplicando **Domain Driven 
 
 O projeto segue **DDD com Arquitetura Hexagonal**, organizado por contextos de negócio, não por camada técnica.
 
+```
 src/
 └── com.empresa.erp/
-├── vendas/
-│   ├── domain/        → regras de negócio
-│   ├── application/   → casos de uso
-│   └── infrastructure → controllers, repositórios JPA
-├── clientes/
-├── produtos/
-├── usuarios/
-├── shared/            → exceções e eventos base
-└── config/            → segurança e JWT
+    ├── vendas/
+    │   ├── domain/        → regras de negócio
+    │   ├── application/   → casos de uso
+    │   └── infrastructure → controllers, repositórios JPA
+    ├── clientes/
+    ├── produtos/
+    ├── usuarios/
+    ├── shared/            → exceções e eventos base
+    └── config/            → segurança e JWT
+```
 
 ### Conceitos aplicados
 - **Bounded Contexts** — cada contexto tem seu próprio modelo
