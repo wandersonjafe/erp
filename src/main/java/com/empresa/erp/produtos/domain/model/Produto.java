@@ -37,16 +37,33 @@ public class Produto {
         this.estoque = estoque;
         this.categoria = categoria;
     }
+
+    public void atualizarNome(String novoNome) {
+        if (novoNome == null || novoNome.isBlank())
+            throw new ErpException("Nome não pode ser vazio");
+        this.nome = novoNome;
+    }
+
+    public void atualizarDescricao(String novaDescricao) {
+        this.descricao = novaDescricao;
+    }
+
     public void atualizarPreco(BigDecimal novoPreco) {
         if (novoPreco == null || novoPreco.compareTo(BigDecimal.ZERO) <= 0)
             throw new ErpException("Preço deve ser maior que zero");
         this.preco = novoPreco;
     }
+
+    public void atualizarCategoria(CategoriaProduto novaCategoria) {
+        this.categoria = novaCategoria;
+    }
+
     public void adicionarEstoque(int quantidade) {
         if (quantidade <= 0)
             throw new ErpException("Quantidade deve ser maior que zero");
         this.estoque += quantidade;
     }
+
     public void removerEstoque(int quantidade) {
         if (quantidade <= 0)
             throw new ErpException("Quantidade deve ser maior que zero");
@@ -55,27 +72,10 @@ public class Produto {
         this.estoque -= quantidade;
     }
 
-    public UUID getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public BigDecimal getPreco() {
-        return preco;
-    }
-
-    public int getEstoque() {
-        return estoque;
-    }
-
-    public CategoriaProduto getCategoria() {
-        return categoria;
-    }
+    public UUID getId() { return id; }
+    public String getNome() { return nome; }
+    public String getDescricao() { return descricao; }
+    public BigDecimal getPreco() { return preco; }
+    public int getEstoque() { return estoque; }
+    public CategoriaProduto getCategoria() { return categoria; }
 }

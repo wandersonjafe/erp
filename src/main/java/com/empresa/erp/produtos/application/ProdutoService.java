@@ -47,10 +47,21 @@ public class ProdutoService {
     public ProdutoResponse atualizar(UUID id, ProdutoRequest request) {
         Produto produto = produtoRepository.buscarPorId(id)
                 .orElseThrow(() -> new ErpException("Produto não encontrado"));
+
+        produto.atualizarNome(request.nome());
+        produto.atualizarDescricao(request.descricao());
         produto.atualizarPreco(request.preco());
+        produto.atualizarCategoria(request.categoria());
+
+        int diferenca = request.estoque() - produto.getEstoque();
+        if (diferenca > 0) {
+            produto.adicionarEstoque(diferenca);
+        } else if (diferenca < 0) {
+            produto.removerEstoque(Math.abs(diferenca));
+        }
+
         produtoRepository.salvar(produto);
         return toResponse(produto);
-
     }
 
     public void deletar(UUID id) {
@@ -61,12 +72,12 @@ public class ProdutoService {
 
     private ProdutoResponse toResponse(Produto produto) {
         return new ProdutoResponse(
-              produto.getId(),
-              produto.getNome(),
-              produto.getDescricao(),
-              produto.getPreco(),
-              produto.getEstoque(),
-              produto.getCategoria()
+                produto.getId(),
+                produto.getNome(),
+                produto.getDescricao(),
+                produto.getPreco(),
+                produto.getEstoque(),
+                produto.getCategoria()
         );
     }
 }
