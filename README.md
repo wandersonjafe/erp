@@ -1,6 +1,6 @@
 # 🏢 ERP - Sistema de Gestão Empresarial
 
-API REST robusta desenvolvida com Java e Spring Boot, aplicando **Domain Driven Design (DDD)** e **Arquitetura Hexagonal** na prática.
+API REST robusta desenvolvida com Java e Spring Boot, aplicando **Domain Driven Design (DDD)** e **Arquitetura Hexagonal** na prática!
 
 > Projeto desenvolvido como portfólio para demonstrar conhecimento em arquitetura de software, boas práticas e tecnologias do ecossistema Java.
 
