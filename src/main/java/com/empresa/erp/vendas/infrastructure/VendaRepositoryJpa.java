@@ -3,6 +3,8 @@ package com.empresa.erp.vendas.infrastructure;
 import com.empresa.erp.vendas.domain.model.Venda;
 import com.empresa.erp.vendas.domain.repository.VendaRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -24,4 +26,7 @@ public class VendaRepositoryJpa implements VendaRepository {
     public Optional<Venda> buscarPorId(UUID id) {
         return jpaRepository.findById(id);
     }
+
+    @Override
+    public List<Venda> listarTodos() { return jpaRepository.findAll(); }
 }

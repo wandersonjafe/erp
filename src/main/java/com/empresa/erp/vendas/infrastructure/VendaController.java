@@ -2,9 +2,11 @@ package com.empresa.erp.vendas.infrastructure;
 
 import com.empresa.erp.vendas.application.VendaService;
 import com.empresa.erp.vendas.application.dto.AdicionarItemRequest;
+import com.empresa.erp.vendas.domain.model.Venda;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -35,5 +37,10 @@ public class VendaController {
     public ResponseEntity<Void> fecharVenda (@PathVariable UUID vendaId) {
         vendaService.fecharVenda(vendaId);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Venda>> listarVendas() {
+        return ResponseEntity.ok(vendaService.listarTodos());
     }
 }

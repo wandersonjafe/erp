@@ -10,6 +10,7 @@ import com.empresa.erp.vendas.domain.repository.VendaRepository;
 import com.empresa.erp.vendas.domain.valueobject.Dinheiro;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -62,5 +63,9 @@ public class VendaService {
         venda.fechar();
         vendaRepository.salvar(venda);
 
+    }
+
+    public List<Venda> listarTodos() {
+        return vendaRepository.listarTodos();
     }
 }
