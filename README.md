@@ -148,6 +148,7 @@ Authorization: Bearer {token}
 | POST | /vendas/abrir/{clienteId} | Abrir venda | ✅ |
 | POST | /vendas/{id}/itens | Adicionar item | ✅ |
 | POST | /vendas/{id}/fechar | Fechar venda | ✅ |
+| GET | /vendas | Listar vendas | ✅ |
 
 ---
 
