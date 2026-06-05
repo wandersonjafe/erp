@@ -46,13 +46,11 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
-        String frontendUrl = System.getenv("FRONTEND_URL");
-
-        if (frontendUrl != null && !frontendUrl.isBlank()) {
-            config.setAllowedOrigins(List.of("http://localhost:5173", frontendUrl));
-        } else {
-            config.setAllowedOrigins(List.of("http://localhost:5173"));
-        }
+        // Aceita localhost em desenvolvimento e qualquer subdomínio do Vercel em produção
+        config.setAllowedOriginPatterns(List.of(
+                "http://localhost:5173",
+                "https://*.vercel.app"
+        ));
 
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
