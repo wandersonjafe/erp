@@ -52,6 +52,7 @@ src/
 - Cadastro de usuários com perfis (ADMIN, OPERADOR, VISUALIZADOR)
 - Login com geração de token JWT
 - Proteção de rotas por token
+- Cancelamento de vendas abertas
 
 ### Clientes
 - CRUD completo
@@ -77,7 +78,7 @@ src/
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/erp.git
+git clone https://github.com/wandersonjafe/erp.git
 cd erp
 ```
 
