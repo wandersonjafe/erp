@@ -50,6 +50,12 @@ public class Venda {
         this.status = StatusVenda.FECHADA;
     }
 
+    public void cancelar() {
+        if(status != StatusVenda.ABERTA)
+            throw new ErpException("Apenas vendas abertas podem ser canceladas");
+        this.status = StatusVenda.CANCELADA;
+    }
+
     private void recalcularTotal() {
         this.total = itens.stream()
                 .map(item -> item.getSubtotal().getValor())

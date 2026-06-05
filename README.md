@@ -149,6 +149,8 @@ Authorization: Bearer {token}
 | POST | /vendas/{id}/itens | Adicionar item | ✅ |
 | POST | /vendas/{id}/fechar | Fechar venda | ✅ |
 | GET | /vendas | Listar vendas | ✅ |
+| POST | /vendas/{id}/cancelar | Cancelar venda | ✅ |
+
 
 ---
 

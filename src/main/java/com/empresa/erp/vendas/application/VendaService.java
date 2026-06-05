@@ -65,6 +65,13 @@ public class VendaService {
 
     }
 
+    public void cancelarVenda(UUID vendaId) {
+        Venda venda = vendaRepository.buscarPorId(vendaId)
+                .orElseThrow(() -> new ErpException("Venda não encontrada"));
+        venda.cancelar();
+        vendaRepository.salvar(venda);
+    }
+
     public List<Venda> listarTodos() {
         return vendaRepository.listarTodos();
     }

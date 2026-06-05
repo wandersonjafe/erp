@@ -39,6 +39,12 @@ public class VendaController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/{vendaId}/cancelar")
+    public ResponseEntity<Void> cancelarVenda (@PathVariable UUID vendaId) {
+        vendaService.cancelarVenda(vendaId);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping
     public ResponseEntity<List<Venda>> listarVendas() {
         return ResponseEntity.ok(vendaService.listarTodos());
