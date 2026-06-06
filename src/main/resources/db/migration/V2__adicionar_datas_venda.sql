@@ -1,0 +1,4 @@
+ALTER TABLE vendas
+ADD COLUMN data_criacao TIMESTAMP NULL,
+ADD COLUMN data_fechamento TIMESTAMP NULL,
+ADD COLUMN data_cancelamento TIMESTAMP NULL;

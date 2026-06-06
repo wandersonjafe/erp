@@ -5,6 +5,7 @@ import com.empresa.erp.vendas.domain.valueobject.Dinheiro;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,6 +29,10 @@ public class Venda {
 
     private BigDecimal total;
 
+    private LocalDateTime dataCriacao;
+    private LocalDateTime dataFechamento;
+    private LocalDateTime dataCancelamento;
+
     protected Venda() {}
 
     public Venda(UUID clienteId) {
@@ -35,6 +40,7 @@ public class Venda {
         this.clienteId = clienteId;
         this.status = StatusVenda.ABERTA;
         this.total = BigDecimal.ZERO;
+        this.dataCriacao = LocalDateTime.now();
     }
 
     public void adicionarItem(UUID produtoId, String nomeProduto, int quantidade, Dinheiro preco) {
@@ -48,12 +54,14 @@ public class Venda {
         if (itens.isEmpty())
             throw new ErpException("Não é possível fechar uma venda sem itens");
         this.status = StatusVenda.FECHADA;
+        this.dataFechamento = LocalDateTime.now();
     }
 
     public void cancelar() {
         if(status != StatusVenda.ABERTA)
             throw new ErpException("Apenas vendas abertas podem ser canceladas");
         this.status = StatusVenda.CANCELADA;
+        this.dataCancelamento = LocalDateTime.now();
     }
 
     private void recalcularTotal() {
@@ -66,5 +74,8 @@ public class Venda {
     public UUID getClienteId() { return clienteId; }
     public StatusVenda getStatus() { return status; }
     public BigDecimal getTotal() { return total; }
+    public LocalDateTime getDataCriacao() { return dataCriacao; }
+    public LocalDateTime getDataFechamento() { return dataFechamento; }
+    public LocalDateTime getDataCancelamento() { return dataCancelamento; }
     public List<ItemVenda> getItens() { return Collections.unmodifiableList(itens); }
 }
