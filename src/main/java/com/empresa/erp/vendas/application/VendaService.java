@@ -11,6 +11,7 @@ import com.empresa.erp.vendas.domain.valueobject.Dinheiro;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -29,11 +30,11 @@ public class VendaService {
     }
 
     public UUID abrirVenda(UUID clienteId) {
-       clienteRepository.buscarPorId(clienteId)
-               .orElseThrow(() -> new ErpException("Cliente não encontrado"));
-       Venda venda = new Venda(clienteId);
-       vendaRepository.salvar(venda);
-       return venda.getId();
+        clienteRepository.buscarPorId(clienteId)
+                .orElseThrow(() -> new ErpException("Cliente não encontrado"));
+        Venda venda = new Venda(clienteId);
+        vendaRepository.salvar(venda);
+        return venda.getId();
     }
 
     public void adicionarItem(UUID vendaId, AdicionarItemRequest request) {
@@ -62,7 +63,6 @@ public class VendaService {
                 .orElseThrow(() -> new ErpException("Venda não encontrada"));
         venda.fechar();
         vendaRepository.salvar(venda);
-
     }
 
     public void cancelarVenda(UUID vendaId) {
@@ -70,6 +70,10 @@ public class VendaService {
                 .orElseThrow(() -> new ErpException("Venda não encontrada"));
         venda.cancelar();
         vendaRepository.salvar(venda);
+    }
+
+    public Optional<Venda> buscarPorId(UUID vendaId) {
+        return vendaRepository.buscarPorId(vendaId);
     }
 
     public List<Venda> listarTodos() {

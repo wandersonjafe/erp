@@ -34,15 +34,22 @@ public class VendaController {
     }
 
     @PostMapping("/{vendaId}/fechar")
-    public ResponseEntity<Void> fecharVenda (@PathVariable UUID vendaId) {
+    public ResponseEntity<Void> fecharVenda(@PathVariable UUID vendaId) {
         vendaService.fecharVenda(vendaId);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/{vendaId}/cancelar")
-    public ResponseEntity<Void> cancelarVenda (@PathVariable UUID vendaId) {
+    public ResponseEntity<Void> cancelarVenda(@PathVariable UUID vendaId) {
         vendaService.cancelarVenda(vendaId);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{vendaId}")
+    public ResponseEntity<Venda> buscarVenda(@PathVariable UUID vendaId) {
+        return vendaService.buscarPorId(vendaId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping

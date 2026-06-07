@@ -52,7 +52,6 @@ src/
 - Cadastro de usuários com perfis (ADMIN, OPERADOR, VISUALIZADOR)
 - Login com geração de token JWT
 - Proteção de rotas por token
-- Cancelamento de vendas abertas
 
 ### Clientes
 - CRUD completo
@@ -66,6 +65,8 @@ src/
 - Abertura de venda vinculada a um cliente real
 - Adição de itens com dedução automática de estoque
 - Fechamento de venda com validação de regras de negócio
+- Cancelamento de vendas abertas
+- Busca de venda por ID com itens carregados
 
 ---
 
@@ -82,12 +83,14 @@ git clone https://github.com/wandersonjafe/erp.git
 cd erp
 ```
 
-2. Crie o arquivo `.env` na raiz: 
+2. Crie o arquivo `.env` na raiz:
 
-   MYSQL_ROOT_PASSWORD=sua_senha
-   SPRING_DATASOURCE_PASSWORD=sua_senha
-   JWT_SECRET=sua_chave_secreta_minimo_32_caracteres
-   JWT_EXPIRATION=86400000
+```env
+MYSQL_ROOT_PASSWORD=sua_senha
+SPRING_DATASOURCE_PASSWORD=sua_senha
+JWT_SECRET=sua_chave_secreta_minimo_32_caracteres
+JWT_EXPIRATION=86400000
+```
 
 3. Configure o `application.properties`:
 ```bash
@@ -124,34 +127,51 @@ Content-Type: application/json
 ```
 
 **Usar o token:**
-
+```
 Authorization: Bearer {token}
+```
 
 ---
 
 ## 📋 Endpoints
 
+### Usuários
+
 | Método | Rota | Descrição | Auth |
 |--------|------|-----------|------|
 | POST | /usuarios/cadastrar | Cadastrar usuário | ❌ |
 | POST | /usuarios/login | Login | ❌ |
-| GET | /usuarios | Listar usuários | ✅ |
+
+### Clientes
+
+| Método | Rota | Descrição | Auth |
+|--------|------|-----------|------|
 | GET | /clientes | Listar clientes | ✅ |
 | POST | /clientes | Cadastrar cliente | ✅ |
 | GET | /clientes/{id} | Buscar cliente | ✅ |
 | PUT | /clientes/{id} | Atualizar cliente | ✅ |
 | DELETE | /clientes/{id} | Deletar cliente | ✅ |
+
+### Produtos
+
+| Método | Rota | Descrição | Auth |
+|--------|------|-----------|------|
 | GET | /produtos | Listar produtos | ✅ |
 | POST | /produtos | Cadastrar produto | ✅ |
 | GET | /produtos/{id} | Buscar produto | ✅ |
 | PUT | /produtos/{id} | Atualizar produto | ✅ |
 | DELETE | /produtos/{id} | Deletar produto | ✅ |
+
+### Vendas
+
+| Método | Rota | Descrição | Auth |
+|--------|------|-----------|------|
 | POST | /vendas/abrir/{clienteId} | Abrir venda | ✅ |
 | POST | /vendas/{id}/itens | Adicionar item | ✅ |
 | POST | /vendas/{id}/fechar | Fechar venda | ✅ |
-| GET | /vendas | Listar vendas | ✅ |
 | POST | /vendas/{id}/cancelar | Cancelar venda | ✅ |
-
+| GET | /vendas | Listar vendas | ✅ |
+| GET | /vendas/{id} | Buscar venda por ID | ✅ |
 
 ---
 
